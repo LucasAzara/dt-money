@@ -4,6 +4,7 @@
             "id":1,
             "description": "Desenvolvimento de site",
             "type": "income",
+            "category": "Trabalho",
             "price": 14000,
             "createdAt": "2022-12-23T17:06:43.126Z"
         },
@@ -11,6 +12,7 @@
             "id":2,
             "description": "Burger King",
             "type": "outcome",
+            "category": "Comida - Lazer",
             "price": 34.9,
             "createdAt": "2022-12-23T17:05:43.126Z"
         }
