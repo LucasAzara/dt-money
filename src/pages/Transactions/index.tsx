@@ -1,6 +1,8 @@
 // Components
+import { useContext } from 'react'
 import { Header } from '../../components/Header'
 import { Summary } from '../../components/Summary'
+import { TransactionsProvider } from '../../contexts/TransactionContext'
 import { SearchForm } from './components/SearchForm'
 
 // CSS
@@ -10,34 +12,8 @@ import {
   TransactionsTable,
 } from './styles'
 
-// Axios
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-
-// Interface
-interface ITransactions {
-  id: number
-  description: string
-  type: 'income' | 'outcome'
-  category: string
-  price: number
-  createdAt: string
-}
-
 export function Transactions() {
-  const [transactions, setTransactions] = useState<ITransactions[]>([])
-
-  const loadTransactions = async () => {
-    const trans = await axios
-      .get('http://localhost:3000/transactions')
-      .then((res) => res.data)
-
-    setTransactions(trans)
-  }
-
-  useEffect(() => {
-    loadTransactions()
-  }, [])
+  const { transactions } = useContext(TransactionsProvider)
 
   return (
     <div>
