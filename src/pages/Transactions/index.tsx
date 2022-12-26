@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { Header } from '../../components/Header'
 import { Summary } from '../../components/Summary'
 import { TransactionsProvider } from '../../contexts/TransactionContext'
+import { dateFormatter, priceFormatter } from '../../utils/formatter'
 import { SearchForm } from './components/SearchForm'
 
 // CSS
@@ -31,11 +32,11 @@ export function Transactions() {
                   <td width="50%">{t.description}</td>
                   <td>
                     <PriceHighlight variant={t.type}>
-                      R$ {t.price}
+                      {priceFormatter.format(t.price)}
                     </PriceHighlight>
                   </td>
                   <td>{t.category}</td>
-                  <td>{t.createdAt}</td>
+                  <td>{dateFormatter.format(new Date(t.createdAt))}</td>
                 </tr>
               )
             })}
