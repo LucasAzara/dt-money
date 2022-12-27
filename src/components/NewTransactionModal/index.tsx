@@ -14,6 +14,9 @@ import {
 import * as z from 'zod'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+// Context
+import { useContext, useState } from 'react'
+import { TransactionsProvider } from '../../contexts/TransactionContext'
 
 // Zod Schema
 const newTransactionFormSchema = z.object({
@@ -23,22 +26,35 @@ const newTransactionFormSchema = z.object({
   type: z.enum(['income', 'outcome']),
 })
 
+// interface/type
 type TTransactionFormSchema = z.infer<typeof newTransactionFormSchema>
 
-export function NewTransactionModal() {
+interface INewTransactionModal {
+  handleSetDialogStatus: (state: boolean) => void
+}
+
+export function NewTransactionModal({
+  handleSetDialogStatus,
+}: INewTransactionModal) {
+  const { createTransaction } = useContext(TransactionsProvider)
+
   const {
     control,
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting },
   } = useForm<TTransactionFormSchema>({
     resolver: zodResolver(newTransactionFormSchema),
   })
 
   async function handleCreateNewTransaction(data: TTransactionFormSchema) {
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    // await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    console.log(data)
+    // After creation reset form and close dialog
+    await createTransaction(data)
+      .then(() => reset())
+      .then(() => handleSetDialogStatus(false))
   }
 
   return (

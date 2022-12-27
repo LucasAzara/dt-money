@@ -1,21 +1,36 @@
-{ 
-    "transactions":[
-        {
-            "id":1,
-            "description": "Desenvolvimento de site",
-            "type": "income",
-            "category": "Trabalho",
-            "price": 14000,
-            "createdAt": "2022-12-23T17:06:43.126Z"
-        },
-        {
-            "id":2,
-            "description": "Burger King",
-            "type": "outcome",
-            "category": "Comida - Lazer",
-            "price": 34.9,
-            "createdAt": "2022-12-23T17:05:43.126Z"
-        }
-    ]
-     
+{
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Desenvolvimento de site",
+      "type": "income",
+      "category": "Trabalho",
+      "price": 14000,
+      "createdAt": "2022-12-23T17:06:43.126Z"
+    },
+    {
+      "id": 2,
+      "description": "Burger King",
+      "type": "outcome",
+      "category": "Comida - Lazer",
+      "price": 34.9,
+      "createdAt": "2022-12-23T17:05:43.126Z"
+    },
+    {
+      "category": "Comida - Lazer",
+      "description": "Pastel",
+      "price": 7,
+      "type": "outcome",
+      "createdAt": "2022-12-27T22:47:39.561Z",
+      "id": 3
+    },
+    {
+      "category": "Venda",
+      "description": "OLX Notebook",
+      "price": 2000,
+      "type": "income",
+      "createdAt": "2022-12-27T22:48:18.772Z",
+      "id": 4
+    }
+  ]
 }
