@@ -1,7 +1,7 @@
 // React
-import { createContext, ReactNode, useState, useEffect } from 'react'
+import { ReactNode, useState, useEffect } from 'react'
+import { createContext } from 'use-context-selector'
 // Axios
-import axios from 'axios'
 import { api } from '../lib/axios'
 
 // Interface
@@ -31,7 +31,7 @@ interface ITransactionsProviderProps {
   children: ReactNode
 }
 
-// Context
+// Context Selector Create Context
 export const TransactionsProvider = createContext(
   {} as ITransactionsProviderContext,
 )

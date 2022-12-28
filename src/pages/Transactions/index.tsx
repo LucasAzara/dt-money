@@ -1,10 +1,13 @@
 // Components
-import { useContext } from 'react'
 import { Header } from '../../components/Header'
 import { Summary } from '../../components/Summary'
+// Context
+import { useContextSelector } from 'use-context-selector'
 import { TransactionsProvider } from '../../contexts/TransactionContext'
-import { dateFormatter, priceFormatter } from '../../utils/formatter'
+// React Hook Form
 import { SearchForm } from './components/SearchForm'
+// Formatters
+import { dateFormatter, priceFormatter } from '../../utils/formatter'
 
 // CSS
 import {
@@ -14,7 +17,9 @@ import {
 } from './styles'
 
 export function Transactions() {
-  const { transactions } = useContext(TransactionsProvider)
+  const transactions = useContextSelector(TransactionsProvider, (context) => {
+    return context.transactions
+  })
 
   return (
     <div>
