@@ -67,7 +67,7 @@ export function TransactionContext({ children }: ITransactionsProviderProps) {
   // Fetch Transaction when entering site
   useEffect(() => {
     fetchTransactions()
-  }, [])
+  }, [fetchTransactions])
 
   return (
     <TransactionsProvider.Provider
