@@ -1,5 +1,5 @@
 // React
-import { ReactNode, useState, useEffect } from 'react'
+import { ReactNode, useState, useEffect, useCallback } from 'react'
 import { createContext } from 'use-context-selector'
 // Axios
 import { api } from '../lib/axios'
@@ -40,16 +40,17 @@ export function TransactionContext({ children }: ITransactionsProviderProps) {
   const [transactions, setTransactions] = useState<ITransactions[]>([])
 
   // Get transactions form JSON Server
-  const fetchTransactions = async (query?: string) => {
+  const fetchTransactions = useCallback(async (query?: string) => {
     const trans = await api.get('/transactions', {
       params: { q: query },
     })
 
     setTransactions(trans.data)
-  }
+  }, [])
 
   // Create new transaction and Update JSON Server
-  const createTransaction = async (data: INewTransaction) => {
+  // Callback used to not render constantly
+  const createTransaction = useCallback(async (data: INewTransaction) => {
     const { category, description, price, type } = data
 
     const response = await api.post('/transactions', {
@@ -61,8 +62,9 @@ export function TransactionContext({ children }: ITransactionsProviderProps) {
     })
 
     setTransactions((state) => [response.data, ...state])
-  }
+  }, [])
 
+  // Fetch Transaction when entering site
   useEffect(() => {
     fetchTransactions()
   }, [])

@@ -6,14 +6,14 @@ import logoImg from '../../assets/logo.svg'
 import * as Dialog from '@radix-ui/react-dialog'
 // Components
 import { NewTransactionModal } from '../NewTransactionModal'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 export function Header() {
   const [dialogStatus, setDialogStatus] = useState(false)
 
-  const handleSetDialogStatus = (state: boolean) => {
+  const handleSetDialogStatus = useCallback((state: boolean) => {
     setDialogStatus(state)
-  }
+  }, [])
 
   return (
     <HeaderContainer>
